@@ -35,9 +35,6 @@ RUN npm ci
 
 COPY . .
 
-RUN php -m
-RUN php --ri pdo_mysql || true
-
 RUN composer dump-autoload --optimize
 RUN php artisan package:discover --ansi || true
 
