@@ -125,7 +125,7 @@ export default function DomainDetails() {
     return (
         <div style={{ padding: 20 }}>
             <div style={{ marginBottom: 16 }}>
-                <Link to="/domains">← Назад до списку</Link>
+                <Link to="/">← Назад до списку</Link>
             </div>
 
             <h1>Domain Details</h1>
