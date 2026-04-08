@@ -5,10 +5,10 @@ use App\Http\Controllers\Api\AuthController;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::get('/auth-user', [AuthController::class, 'user']);
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/auth-user', [AuthController::class, 'user']);
 });
 
 Route::view('/{any?}', 'app')->where('any', '.*');
