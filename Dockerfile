@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y \
     zip \
     netcat-openbsd \
     && docker-php-ext-install pdo pdo_mysql mbstring bcmath intl zip gd \
-    && php -m \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # 🔥 Redis extension
@@ -35,6 +34,9 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
+
+RUN php -m
+RUN php --ri pdo_mysql || true
 
 RUN composer dump-autoload --optimize
 RUN php artisan package:discover --ansi || true
