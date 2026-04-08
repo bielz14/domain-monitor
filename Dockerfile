@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     zip \
     netcat-openbsd \
     && docker-php-ext-install pdo pdo_mysql mbstring bcmath intl zip gd \
+    && php -m \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # 🔥 Redis extension
@@ -48,6 +49,6 @@ RUN echo '[www]' > /usr/local/etc/php-fpm.d/zz-docker.conf \
 COPY docker/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-EXPOSE 9000
+EXPOSE 8000
 
 ENTRYPOINT ["/entrypoint.sh"]
