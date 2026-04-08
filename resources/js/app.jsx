@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import {
@@ -74,14 +75,21 @@ function AppRouter() {
         setLoading(true);
 
         try {
-            const res = await api.get("/auth-user");
-            if (res.data.data === null) {
-                setUser(null);
-                return null;
-            } else {
-                setUser(res.data);
-                return res.data;
+            const res = await axios.get("/auth-user", {
+                withCredentials: true,
+                headers: {
+                    Accept: "application/json",
+                    "X-Requested-With": "XMLHttpRequest",
+                },
+            });
+
+            if (res.data?.user?.id) {
+                setUser(res.data.user);
+                return res.data.user;
             }
+
+            setUser(null);
+            return null;
         } catch (e) {
             setUser(null);
             return null;

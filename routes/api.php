@@ -8,8 +8,6 @@ use App\Http\Controllers\Api\CheckController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/auth-user', [AuthController::class, 'user']);
-
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/logout', [AuthController::class, 'logout']);

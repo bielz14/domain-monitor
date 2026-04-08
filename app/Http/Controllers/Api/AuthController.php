@@ -71,12 +71,8 @@ class AuthController extends Controller
     {
         $user = auth('web')->user();
 
-        if (!$user) {
-            return response()->json([
-                'data' => auth('web')->user(),
-            ]);
-        }
-
-        return response()->json($user);
+        return response()->json([
+            'user' => $user,
+        ]);
     }
 }
