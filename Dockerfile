@@ -1,8 +1,5 @@
 FROM php:8.4-fpm
 
-ARG CACHE_BUST=1
-RUN echo "CACHE_BUST=${CACHE_BUST}"
-
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
