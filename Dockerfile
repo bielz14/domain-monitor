@@ -42,8 +42,10 @@ RUN npm run build
 
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
+#RUN echo '[www]' > /usr/local/etc/php-fpm.d/zz-docker.conf \
+    #&& echo 'listen = 0.0.0.0:9000' >> /usr/local/etc/php-fpm.d/zz-docker.conf
 RUN echo '[www]' > /usr/local/etc/php-fpm.d/zz-docker.conf \
-    && echo 'listen = 0.0.0.0:9000' >> /usr/local/etc/php-fpm.d/zz-docker.conf
+    && echo 'listen = 0.0.0.0:8000' >> /usr/local/etc/php-fpm.d/zz-docker.conf
 
 COPY docker/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
