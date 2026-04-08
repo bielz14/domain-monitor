@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api, { getCsrfCookie } from "../api.jsx";
@@ -32,7 +33,7 @@ export default function Login({ onLogin }) {
             setMessage("");
 
             await getCsrfCookie();
-            await api.post("/login", form);
+            await axios.post("/login", form);
 
             if (onLogin) {
                 await onLogin();

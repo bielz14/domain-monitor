@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api, { getCsrfCookie } from "../api.jsx";
@@ -34,7 +35,7 @@ export default function Register() {
             setMessage("");
 
             await getCsrfCookie();
-            await api.post("/register", form);
+            await axios.post("/register", form);
             navigate("/");
         } catch (error) {
             if (error.response?.status === 422) {

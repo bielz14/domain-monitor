@@ -105,7 +105,13 @@ function AppRouter() {
     const handleLogout = async () => {
         try {
             await getCsrfCookie();
-            await api.post("/logout");
+            await axios.post("/logout", {
+                withCredentials: true,
+                headers: {
+                    Accept: "application/json",
+                    "X-Requested-With": "XMLHttpRequest",
+                },
+            });
             setUser(null);
         } catch (e) {
             console.error("Помилка виходу", e);
